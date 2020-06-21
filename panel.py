@@ -1,4 +1,7 @@
 import os 
+#os.system("sudo apt-get install python-pip")
+#os.system("sudo apt-get install python3-pip")
+#os.system("sudo pip install discord.py colorama requests")
 os.system("apt-get install figlet")
 os.system("clear")
 os.system("figlet MioPanel")
@@ -15,6 +18,7 @@ print("""
 [1] RDP Brute
 [2] Instangram Bruteforcer
 [4] Mail Checker (Before Upload mailcombo.txt)
+[9] 2Capchta Checker (If You Dont Upload Proxy in proxylist.txt it dont work)
 -------Scraper-------
 [3] Anonfile Scraper
 [8] Proxy Scraper
@@ -28,7 +32,8 @@ log= raw_input("Run Your Script With Number ------->")
 
 if (log== "1"):
    os.system("sudo python rdp.pyc")
-
+elif (log== "9"):
+   os.system("python 2capchta.py")
 elif (log=="2"):
 	os.system("sudo python insta.pyc")
 elif (log=="3"):
