@@ -18,7 +18,7 @@ print("""
 [1] RDP Brute
 [2] Instangram Bruteforcer
 [4] Mail Checker (Before Upload mailcombo.txt)
-[9] 2Capchta Checker (If You Dont Upload Proxy in proxylist.txt it dont work)
+[9] 2Capchta Checker
 -------Scraper-------
 [3] Anonfile Scraper
 [8] Proxy Scraper

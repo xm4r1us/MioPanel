@@ -6,8 +6,8 @@ import string
 #print(r.text)
 a = open('proxylist.txt', 'r').readlines()
 file = [ s.rstrip() for s in a ]
-for lines in file:
-	proxies = {"https://2captcha.com/":lines}
+while True:
+	proxies = {"https://2captcha.com/":"190.96.91.243:8080"}
 	letters = string.digits + string.lowercase
 	randomString =  ''.join(random.choice(letters) for i in range(33)) 
 
@@ -16,6 +16,3 @@ for lines in file:
 		print("Work ID : " + randomString + "Balance: " + r.text)
 	else:
 		print("Not Work ID : " + randomString + " " + r.text)
-
-	
-
