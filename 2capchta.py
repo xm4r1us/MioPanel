@@ -1,11 +1,7 @@
 ﻿import requests
 import random
 import string
-#proxies = {"https://2captcha.com/":}
-#r = requests.get("", proxies=proxies)
-#print(r.text)
-a = open('proxylist.txt', 'r').readlines()
-file = [ s.rstrip() for s in a ]
+
 while True:
 	proxies = {"https://2captcha.com/":"190.96.91.243:8080"}
 	letters = string.digits + string.lowercase
