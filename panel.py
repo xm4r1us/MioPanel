@@ -46,7 +46,8 @@ elif (log== "7"):
 	os.system("")
 	os.system("sudo bash socialphish.sh")
 elif (log== "8"):
-	os.system("python scraper.py")
+	koko11  = raw_input("File Name : ")
+	os.system("python3 scraper.py -o " + koko11 )
 	
 elif (log== "6"):
 	os.system("sudo rm -rf ./web")

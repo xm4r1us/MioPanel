@@ -1,339 +1,142 @@
-print("Starting....")
-import urllib
-from time import gmtime, strftime, sleep
+#!/usr/bin/python3
 
-#Functions,
-def isnum(ch):
-	if ch == "0":
-		return True
-	if ch == "1":
-		return True
-	if ch == "2":
-		return True
-	if ch == "3":
-		return True
-	if ch == "4":
-		return True
-	if ch == "5":
-		return True
-	if ch == "6":
-		return True
-	if ch == "7":
-		return True
-	if ch == "8":
-		return True
-	if ch == "9":
-		return True
-	return False
-	
-def alfabetcheck(line):
-	sw = False
-	if "a" in line:
-		sw = True
-	if "b" in line:
-		sw = True
-	if "c" in line:
-		sw = True
-	if "d" in line:
-		sw = True
-	if "e" in line:
-		sw = True
-	if "f" in line:
-		sw = True
-	if "g" in line:
-		sw = True
-	if "h" in line:
-		sw = True
-	if "i" in line:
-		sw = True
-	if "j" in line:
-		sw = True
-	if "k" in line:
-		sw = True
-	if "l" in line:
-		sw = True
-	if "m" in line:
-		sw = True
-	if "n" in line:
-		sw = True
-	if "o" in line:
-		sw = True
-	if "p" in line:
-		sw = True
-	if "q" in line:
-		sw = True
-	if "r" in line:
-		sw = True
-	if "s" in line:
-		sw = True
-	if "t" in line:
-		sw = True
-	if "u" in line:
-		sw = True
-	if "v" in line:
-		sw = True
-	if "w" in line:
-		sw = True
-	if "x" in line:
-		sw = True
-	if "y" in line:
-		sw = True
-	if "z" in line:
-		sw = True
-	if sw == True:
-		return False
-	else:
-		return True
-		
-def writetofile(lines):
-	for line in lines:
-		wfile.write(line + "\n")
+import sys
 
-def process	(source):
-	proxys = []
-	templist = []
-	temp = ""
-	
-	for line in source:
-		temp += line
-		
-	z = 0
-	prt1 = ""
-	prt2 = ""
-	for itm in temp:
-		if ":" in itm:
-			prt1 = temp[z - 15:z]
-			prt2 = temp[z:z + 6]
-			templist.append(prt1 + prt2)
-		z += 1
-			
-	for line in templist:
-		if alfabetcheck(line):
-			proxys.append(line)
-			
-	x = 0
-	for line in proxys:
-		temp = ""
-		for itm in line:
-			if isnum(itm) or itm == "." or itm == ":":
-				temp += itm
-				proxys[x] = temp
-		x += 1
-	return proxys
-	
-		
-#The Websites proxies are gonna be scraped from, currently, unknown	
-urls = ["http://50kproxies.com/10-february-10-02-new-fresh-daily-50000-proxy-list-50kproxies-com/",
-"http://50kproxies.com/11-january-11-01-new-fresh-daily-50000-proxy-list-50kproxies-com/",
-"http://50na50.net/",
-"http://50na50.net/proxy/httplist",
-"http://50na50.net/no_anonim_http.txt",
-"http://aliveproxy.com/anonymous-proxy-list",
-"http://aliveproxy.com/ca-proxy-list",
-"http://aliveproxy.com/fastest-proxies",
-"http://aliveproxy.com/fr-proxy-list",
-"http://aliveproxy.com/gb-proxy-list",
-"http://aliveproxy.com/high-anonymity-proxy-list",
-"http://aliveproxy.com/jp-proxy-list",
-"http://aliveproxy.com/proxy-list-port-3128",
-"http://aliveproxy.com/proxy-list-port-80",
-"http://aliveproxy.com/proxy-list-port-8000",
-"http://aliveproxy.com/proxy-list-port-8080",
-"http://aliveproxy.com/ru-proxy-list",
-"http://aliveproxy.com/us-proxy-list",
-"http://atomintersoft.com/anonymous_proxy_list",
-"http://atomintersoft.com/high_anonymity_elite_proxy_list",
-"http://atomintersoft.com/products/alive-proxy/proxy-list",
-"http://atomintersoft.com/products/alive-proxy/proxy-list?ap=9",
-"http://atomintersoft.com/products/alive-proxy/proxy-list/3128",
-"http://atomintersoft.com/products/alive-proxy/proxy-list/com",
-"http://atomintersoft.com/products/alive-proxy/proxy-list/high-anonymity/",
-"http://atomintersoft.com/products/alive-proxy/socks5-list",
-"http://atomintersoft.com/proxy_list_domain_com",
-"http://atomintersoft.com/proxy_list_domain_edu",
-"http://atomintersoft.com/proxy_list_domain_net",
-"http://atomintersoft.com/proxy_list_domain_org",
-"http://atomintersoft.com/proxy_list_port_3128",
-"http://atomintersoft.com/proxy_list_port_80",
-"http://atomintersoft.com/proxy_list_port_8000",
-"http://atomintersoft.com/proxy_list_port_81",
-"http://atomintersoft.com/transparent_proxy_list",
-"http://best-proxy.com/english/search.php?search=anonymous-and-elite&country=any&type=anonymous-and-elite&port=any&ssl=any",
-"http://best-proxy.com/english/search.php?search=anonymous-and-elite&country=any&type=anonymous-and-elite&port=any&ssl=any&p=2",
-"http://best-proxy.com/english/search.php?search=anonymous-and-elite&country=any&type=anonymous-and-elite&port=any&ssl=any&p=3",
-"http://bestproxy.narod.ru/proxy2.html",
-"http://checkerproxy.net/all_proxy",
-"http://ejohn.org/apps/anon/",
-"http://free-proxy-list.net/",
-"http://free-proxy-list.net/anonymous-proxy.html",
-"http://free-proxy-list.net/uk-proxy.html",
-"http://guncelproxy.com/Anasayfa/",
-"http://multiproxy.org/anon_proxy.htm",
-"http://multiproxy.org/txt_all/proxy.txt",
-"http://nntime.com/proxy-list-01.htm",
-"http://nntime.com/proxy-list-02.htm",
-"http://nntime.com/proxy-list-03.htm",
-"http://nntime.com/proxy-list-04.htm",
-"http://nntime.com/proxy-list-05.htm",
-"http://nntime.com/proxy-list-06.htm",
-"http://nntime.com/proxy-list-07.htm",
-"http://nntime.com/proxy-list-08.htm",
-"http://nntime.com/proxy-list-09.htm",
-"http://nntime.com/proxy-list-10.htm",
-"http://nntime.com/proxy-list-11.htm",
-"http://nntime.com/proxy-list-12.htm",
-"http://nntime.com/proxy-list-13.htm",
-"http://nntime.com/proxy-list-14.htm",
-"http://nntime.com/proxy-list-15.htm",
-"http://nntime.com/proxy-list-17.htm",
-"http://nntime.com/proxy-list-18.htm",
-"http://nntime.com/proxy-list-19.htm",
-"http://nntime.com/proxy-list-20.htm",
-"http://nntime.com/proxy-list-21.htm",
-"http://nntime.com/proxy-list-22.htm",
-"http://nntime.com/proxy-list-23.htm",
-"http://nntime.com/proxy-list-24.htm",
-"http://nntime.com/proxy-list-25.htm",
-"http://nntime.com/proxy-list-27.htm",
-"http://nntime.com/proxy-list-28.htm",
-"http://nntime.com/proxy-list-29.htm",
-"http://nntime.com/proxy-list-30.htm",
-"http://notan.h1.ru/hack/xwww/proxy1.html",
-"http://notan.h1.ru/hack/xwww/proxy10.html",
-"http://notan.h1.ru/hack/xwww/proxy2.html",
-"http://notan.h1.ru/hack/xwww/proxy3.html",
-"http://notan.h1.ru/hack/xwww/proxy4.html",
-"http://notan.h1.ru/hack/xwww/proxy5.html",
-"http://notan.h1.ru/hack/xwww/proxy6.html",
-"http://notan.h1.ru/hack/xwww/proxy7.html",
-"http://notan.h1.ru/hack/xwww/proxy8.html",
-"http://notan.h1.ru/hack/xwww/proxy9.html",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=0",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=100",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=125",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=150",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=175",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=200",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=225",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=25",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=250",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=275",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=300",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=325",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=350",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=375",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=400",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=425",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=450",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=475",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=50",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=500",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=525",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=550",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=575",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=600",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=625",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=650",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=675",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=700",
-"http://proxy.speedtest.at/proxybyActuality.php?offset=75",
-"http://proxylist.sakura.ne.jp/index.htm?pages=0",
-"http://proxylist.sakura.ne.jp/index.htm?pages=1",
-"http://proxylist.sakura.ne.jp/index.htm?pages=2",
-"http://proxylist.sakura.ne.jp/index.htm?pages=3",
-"http://proxylist.sakura.ne.jp/index.htm?pages=4",
-"http://proxylistchecker.org/proxylists.php",
-"http://proxylistchecker.org/proxylists.php?t=&p=10",
-"http://proxylistchecker.org/proxylists.php?t=&p=2",
-"http://proxylistchecker.org/proxylists.php?t=&p=3",
-"http://proxylistchecker.org/proxylists.php?t=&p=4",
-"http://proxylistchecker.org/proxylists.php?t=&p=5",
-"http://proxylistchecker.org/proxylists.php?t=&p=6",
-"http://proxylistchecker.org/proxylists.php?t=&p=7",
-"http://proxylistchecker.org/proxylists.php?t=&p=8",
-"http://proxylistchecker.org/proxylists.php?t=&p=9",
-"http://rootjazz.com/proxies/proxies.txt",
-"http://samair.ru/proxy/proxy-01.htm",
-"http://samair.ru/proxy/proxy-02.htm",
-"http://samair.ru/proxy/proxy-03.htm",
-"http://samair.ru/proxy/proxy-04.htm",
-"http://samair.ru/proxy/proxy-05.htm",
-"http://samair.ru/proxy/proxy-06.htm",
-"http://samair.ru/proxy/proxy-07.htm",
-"http://samair.ru/proxy/proxy-08.htm",
-"http://samair.ru/proxy/proxy-09.htm",
-"http://samair.ru/proxy/proxy-10.htm",
-"http://samair.ru/proxy/proxy-11.htm",
-"http://samair.ru/proxy/proxy-12.htm",
-"http://samair.ru/proxy/proxy-13.htm",
-"http://samair.ru/proxy/proxy-14.htm",
-"http://samair.ru/proxy/proxy-15.htm",
-"http://samair.ru/proxy/proxy-16.htm",
-"http://samair.ru/proxy/proxy-17.htm",
-"http://samair.ru/proxy/proxy-18.htm",
-"http://samair.ru/proxy/proxy-19.htm",
-"http://samair.ru/proxy/proxy-20.htm",
-"http://samair.ru/proxy/proxy-21.htm",
-"http://samair.ru/proxy/proxy-22.htm",
-"http://samair.ru/proxy/proxy-23.htm",
-"http://samair.ru/proxy/proxy-24.htm",
-"http://samair.ru/proxy/proxy-25.htm",
-"http://samair.ru/proxy/proxy-26.htm",
-"http://samair.ru/proxy/proxy-27.htm",
-"http://samair.ru/proxy/proxy-28.htm",
-"http://samair.ru/proxy/proxy-29.htm",
-"http://samair.ru/proxy/proxy-30.htm",
-"http://spys.ru/en/anonymous-proxy-list/",
-"http://spys.ru/en/free-proxy-list/",
-"http://tools.rosinstrument.com/proxy/?rule1",
-"http://txt.proxyspy.net/proxy.txt",
-"http://vmarte.com/proxy/proxy_all.txt",
-"http://www.getproxy.jp/en/default/1",
-"http://www.getproxy.jp/en/default/2",
-"http://www.getproxy.jp/en/default/3",
-"http://www.getproxy.jp/en/default/4",
-"http://www.getproxy.jp/en/default/5",
-"http://www.google-proxy.net/",
-"http://www.ip-adress.com/proxy_list/?k=time&d=desc",
-"http://www.my-proxy.com/free-proxy-list.html",
-"http://www.proxy4ever.com/",
-"http://www.proxyblind.org/anonymous-proxy.shtml",
-"http://www.proxyblind.org/free-proxy.shtml",
-"http://www.proxyblind.org/proxy-list.shtml",
-"http://www.proxyblind.org/ssl.shtml",
-"http://www.proxyforest.com/proxy.htm",
-"http://www.socks-proxy.net/",
-"http://www.ultrasurf.org/",
-"http://www.us-proxy.org/",]
-		
-for c in range(2, 11):
-	urls.append("http://proxy-list.org/english/index.php?p=" + str(c))
-for c in range(2,31):
-	if c < 10:
-		urls.append("http://www.samair.ru/proxy/proxy-0" + str(c) + ".htm")
-	else:
-		urls.append("http://www.samair.ru/proxy/proxy-" + str(c) + ".htm")
-		
+if sys.version_info[0] < 3:
+	print("This script needs Python 3")
+	exit()
 
-timestamp = strftime("%d, %b, %Y, %H, %M, %S", gmtime())
-wfile = open("proxies" + timestamp + ".txt","w")
+import requests, re, queue, threading, traceback, requests, datetime, time, argparse
 
-proxycount = 0
-for x in range(len(urls)):
-	proxies = []
+parser = argparse.ArgumentParser()
+parser.add_argument('-c', '--check', help="Check the scraped proxies", action='store_true')
+parser.add_argument('-o', '--output', help="Output file", required=True)
+parser.add_argument('-t', '--threads', type=int, default=20, help="Checker threads count")
+parser.add_argument('--timeout', type=int, default=5, help="Checker timeout in seconds")
+parser.add_argument('--http', help="Check proxies for HTTP instead of HTTPS", action='store_true')
+parser.add_argument('--check-with-website', help="Website to connect with proxy. If it doesn't return HTTP 200, it's dead", default="httpbin.org/ip")
+parser.add_argument('--country', help="Locate and print country (requires maxminddb-geolite2)", action='store_true')
+parser.add_argument('--connection-time', help="Print connection time information", action='store_true')
+parser.add_argument('-f', '--write-immediately', help="Force flush the output file every time", action='store_true')
+parser.add_argument('-i', '--extra-information', help="Print last updated time, and configuration description", action='store_true')
+parserx = parser.parse_args()
+threads = parserx.threads
+https = not parserx.http
+timeout = parserx.timeout
+reader = None
+if parserx.country:
 	try:
-		response = urllib.urlopen(urls[x])
-	except Exception as e:
-		print "An error occured at {}".format(urls[x])
-		continue
-	print "[Mio]Scraping URL:" + urls[x]
-	html = response.read()
-	response.close()
-	proxies += process(html)
-	writetofile(proxies)
-	proxycount += len(proxies)
-	sleep(1)
+		from geolite2 import geolite2
+		reader = geolite2.reader()
+	except ImportError:
+		print("Error: maxminddb-geolite2 is not installed. Please try without --country option or install this package.")
+		exit()
 
-	
-print "Grabbing proxies finished, proxies scraped and saved!: " + str(proxycount)	
-wfile.close()
+proxies = []
+
+
+def fetchAndParseProxies(url, custom_regex):
+	global proxies
+	n = 0
+	proxylist = requests.get(url, timeout=5).text
+	proxylist = proxylist.replace('null', '"N/A"')
+	custom_regex = custom_regex.replace('%ip%', '([0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3}\\.[0-9]{1,3})')
+	custom_regex = custom_regex.replace('%port%', '([0-9]{1,5})')
+	for proxy in re.findall(re.compile(custom_regex), proxylist):
+		proxies.append(proxy[0] + ":" + proxy[1])
+		n += 1
+	sys.stdout.write("{0: >5} proxies scraped in this website {1}\n".format(n, url))
+
+
+proxysources = [
+	["http://www.httptunnel.ge/ProxyListForFree.aspx"," target=\"_new\">%ip%:%port%</a>"],
+	["https://raw.githubusercontent.com/sunny9577/proxy-scraper/master/proxies.json", "\"ip\":\"%ip%\",\"port\":\"%port%\","],
+	["https://raw.githubusercontent.com/fate0/proxylist/master/proxy.list", '"host": "%ip%".*?"country": "(.*?){2}",.*?"port": %port%'],
+	["https://raw.githubusercontent.com/a2u/free-proxy-list/master/free-proxy-list.txt", "%ip%:%port%"],
+	["https://raw.githubusercontent.com/clarketm/proxy-list/master/proxy-list.txt", '%ip%:%port% (.*?){2}-.-S \\+'],
+	["https://raw.githubusercontent.com/opsxcq/proxy-list/master/list.txt", "%ip%:%port%"],
+	["https://www.us-proxy.org/", "<tr><td>%ip%<\\/td><td>%port%<\\/td><td>(.*?){2}<\\/td><td class='hm'>.*?<\\/td><td>.*?<\\/td><td class='hm'>.*?<\\/td><td class='hx'>(.*?)<\\/td><td class='hm'>.*?<\\/td><\\/tr>"],
+	["https://free-proxy-list.net/", "<tr><td>%ip%<\\/td><td>%port%<\\/td><td>(.*?){2}<\\/td><td class='hm'>.*?<\\/td><td>.*?<\\/td><td class='hm'>.*?<\\/td><td class='hx'>(.*?)<\\/td><td class='hm'>.*?<\\/td><\\/tr>"],
+	["https://www.sslproxies.org/", "<tr><td>%ip%<\\/td><td>%port%<\\/td><td>(.*?){2}<\\/td><td class='hm'>.*?<\\/td><td>.*?<\\/td><td class='hm'>.*?<\\/td><td class='hx'>(.*?)<\\/td><td class='hm'>.*?<\\/td><\\/tr>"],
+	["https://www.proxy-list.download/api/v0/get?l=en&t=https", '"IP": "%ip%", "PORT": "%port%",'],
+	["https://api.proxyscrape.com/?request=getproxies&proxytype=http&timeout=5000&country=all&ssl=yes&anonymity=all", "%ip%:%port%"],
+	["https://api.proxyscrape.com/?request=getproxies&proxytype=socks4&timeout=5000&country=all&ssl=yes&anonymity=all", "%ip%:%port%"],
+	["https://api.proxyscrape.com/?request=getproxies&proxytype=socks5&timeout=5000&country=all&ssl=yes&anonymity=all", "%ip%:%port%"]
+]
+
+sourcethreads = []
+for source in proxysources:
+	t = threading.Thread(target=fetchAndParseProxies, args=(source[0], source[1]))
+	sourcethreads.append(t)
+	t.start()
+
+for t in sourcethreads:
+	t.join()
+
+proxies_unique = list(set(proxies))
+print("{0: >5} proxies fetched total, {1} unique.".format(len(proxies), len(proxies_unique)))
+proxies = proxies_unique
+proxies_ok = []
+
+f = open(parserx.output, "w")
+if parserx.extra_information:
+	f.write("# Last updated: {}\n".format(datetime.datetime.now().strftime("%d-%m-%Y %H:%M:%S")))
+	if parserx.check:
+		f.write("# {}, {}-second timeout\n".format("HTTPS" if https else "HTTP", timeout))
+	f.write("# https://github.com/KokoD3veloper/MioPanel\n\n")
+
+if parserx.check:
+	print("Checking with {} threads ({}, {} seconds timeout)".format(threads, "HTTPS" if https else "HTTP", timeout))
+	q = queue.Queue()
+	for x in proxies:
+		q.put([x, "N/A"])
+	dead = 0
+	alive = 0
+	def checkProxies():
+		global q
+		global dead
+		global alive
+		global f
+		global proxies
+		global timeout
+		while not q.empty():
+			proxy = q.get()
+			try:
+				resp = requests.get(("https" if https else "http") + ("://" + parserx.check_with_website), proxies={'http':'http://'+proxy[0],'https':'http://'+proxy[0]}, timeout=timeout)
+				if resp.status_code != 200:
+					raise BadProxy
+				if parserx.country:
+					try:
+						proxy[1] = reader.get(proxy[0].split(':')[0])['country']['iso_code']
+					except KeyError:	
+						pass
+					except IndexError:
+						pass
+					except TypeError:
+						pass
+				f.write("{}|{}|{:.2f}s\n".format(proxy[0], proxy[1], resp.elapsed.total_seconds()))
+				if alive % 30 == 0:
+					f.flush()
+				alive += 1
+			except:
+				dead += 1
+
+			sys.stdout.write("\rChecked %{:.2f} - (Alive: {} - Dead: {})".format((alive + dead) / len(proxies) * 100, alive, dead))
+			sys.stdout.flush()
+
+	threadsl = []
+	for i in range(0, threads):
+		t = threading.Thread(target=checkProxies)
+		t.start()
+		threadsl.append(t)
+	for t in threadsl:
+		t.join()
+
+	sys.stdout.write("\rCompleted - Alive: {} - Dead: {}         \n".format(alive, dead))
+	print("")
+else:
+	for proxy in proxies:
+		f.write("{}\n".format(proxy))
+
+f.close()
+
