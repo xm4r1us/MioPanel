@@ -10,5 +10,8 @@ while True:
 	r = requests.get("https://2captcha.com/res.php?key=" + randomString + "&action=getbalance", proxies=proxies)
 	if "." in r.text:
 		print("Work ID : " + randomString + "Balance: " + r.text)
+		dosya = open('keys.txt', 'a+')   # dosya erişimi
+		dosya.write(randomString + "\n")  # yazdırma işlemi
+		dosya.close()
 	else:
 		print("Not Work ID : " + randomString + " " + r.text)
