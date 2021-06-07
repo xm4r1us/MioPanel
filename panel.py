@@ -28,7 +28,7 @@ print("""
 [7] Run Phishing Page Ngrok (Not Our But We Will Add Script)
 
 """)
-log= raw_input("Run Your Script With Number ------->")
+log= input("Run Your Script With Number ------->")
 
 if (log== "1"):
    os.system("sudo python rdp.pyc")
@@ -46,7 +46,7 @@ elif (log== "7"):
 	os.system("")
 	os.system("sudo bash socialphish.sh")
 elif (log== "8"):
-	koko11  = raw_input("File Name : ")
+	koko11  = input("File Name : ")
 	os.system("python3 scraper.py -o " + koko11 )
 	
 elif (log== "6"):
