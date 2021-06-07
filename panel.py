@@ -39,7 +39,7 @@ elif (log=="2"):
 elif (log=="3"):
 	os.system(" python anonfile.pyc")
 elif (log== "4"):
-	os.system("python mail.pyc")
+	os.system("python3 mail.py")
 elif (log== "5"):
 	os.system("sudo python3 crpage.py")
 elif (log== "7"):
