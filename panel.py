@@ -31,7 +31,7 @@ print("""
 log= input("Run Your Script With Number ------->")
 
 if (log== "1"):
-   os.system("sudo python rdp.pyc")
+   os.system("sudo python rdp.py")
 elif (log== "9"):
    os.system("python 2capchta.py")
 elif (log=="2"):
